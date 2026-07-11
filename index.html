@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Glow Skin – כרטיסיית 10 מפגשים</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Glow Skin">
+<meta name="theme-color" content="#f2e3dc">
+<!-- תצוגה מקדימה בווטסאפ / רשתות (עובד כשהדף מאוחסן אונליין) -->
+<meta property="og:title" content="Glow Skin ✦ כרטיסיית 10 מפגשים">
+<meta property="og:description" content="הכרטיסייה הדיגיטלית שלך · Custom Spray Tan Boutique · by Shani">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://avigoldfarb1.github.io/glowskin/">
+<meta property="og:image" content="https://avigoldfarb1.github.io/glowskin/glow-skin-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="apple-touch-icon" href="glow-skin-icon.png">
+<link rel="icon" type="image/png" href="glow-skin-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Frank+Ruhl+Libre:wght@400;500;700&family=Dancing+Script:wght@600&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f2e3dc;
+    --ink:#39291f;
+    --copper:#b47a52;
+    --copper-light:#c9987412;
+    --copper-soft:#c99874;
+    --card:#faf1ec;
+    --danger:#a33b2e;
+    --ok:#4a7c46;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Heebo','Frank Ruhl Libre',sans-serif;
+    display:flex;justify-content:center;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .app{width:100%;max-width:480px;padding:28px 22px 40px;text-align:center}
+
+  /* ---------- Logo ---------- */
+  .palm{width:64px;height:auto;display:block;margin:0 auto 2px;opacity:.9}
+  .logo{display:flex;align-items:baseline;justify-content:center;gap:6px;direction:ltr}
+  .logo .glow{font-family:'Archivo Black',sans-serif;font-size:44px;letter-spacing:1px;color:#332318}
+  .logo .skin{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;color:#332318}
+  .tagline{direction:ltr;font-family:'Heebo',sans-serif;font-weight:300;letter-spacing:5px;font-size:11.5px;margin-top:4px;color:#3d2c20;text-transform:uppercase}
+  .divider{display:flex;align-items:center;gap:10px;margin:14px 0 4px;color:var(--copper)}
+  .divider::before,.divider::after{content:"";flex:1;border-top:1px solid var(--copper);opacity:.6}
+  .divider .spark{font-size:14px}
+  .byline{font-family:'Dancing Script',cursive;font-size:26px;color:var(--copper);margin-top:2px}
+
+  h1.cardtitle{font-family:'Frank Ruhl Libre',serif;font-size:27px;font-weight:500;margin:18px 0 4px}
+  h1.cardtitle .num{color:var(--copper);font-weight:700}
+  h1.cardtitle .spark{color:var(--copper);font-size:16px;vertical-align:middle}
+
+  .client-line{font-size:15px;color:#5d4636;margin-bottom:2px}
+  .client-line b{color:var(--ink)}
+  .validity{font-size:13px;color:#8a6b52;margin-bottom:18px}
+  .validity.expired{color:var(--danger);font-weight:500}
+
+  /* ---------- Punches ---------- */
+  .punch-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,3vw,14px);justify-items:center;margin:8px 0 20px;direction:rtl}
+  .punch{
+    width:100%;max-width:58px;aspect-ratio:1;height:auto;border-radius:50%;
+    border:1.6px solid var(--copper);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--ink);
+    background:var(--card);position:relative;transition:transform .25s, background .25s;
+  }
+  .punch .d{font-size:8.5px;color:#fff;font-family:'Heebo';line-height:1;margin-top:1px;opacity:.95}
+  .punch.done{background:var(--copper);border-color:var(--copper);color:#fff}
+  .punch.pop{animation:pop .5s ease}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+  .progress-label{font-size:14px;color:#6b5240;margin-bottom:18px}
+  .complete-banner{
+    background:var(--copper);color:#fff;border-radius:14px;padding:14px 16px;
+    font-size:16px;font-weight:500;margin:0 0 18px;line-height:1.5;
+    box-shadow:0 6px 18px #b47a5240;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:block;width:100%;border:none;border-radius:14px;cursor:pointer;
+    font-family:'Heebo',sans-serif;font-size:17px;font-weight:500;
+    padding:15px;margin-bottom:12px;transition:opacity .2s, transform .1s;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--ink);color:#f6ece6}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--copper)}
+  .btn:disabled{opacity:.45;cursor:default}
+  .btn-link{background:none;border:none;color:#8a6b52;font-size:13px;text-decoration:underline;cursor:pointer;font-family:'Heebo';margin-top:4px}
+
+  /* ---------- Terms ---------- */
+  .terms{display:flex;justify-content:space-between;gap:8px;margin-top:26px;border-top:1px solid #d9bfae;padding-top:18px}
+  .term{flex:1;font-size:11.5px;color:#5d4636;line-height:1.45}
+  .term .ic{
+    width:40px;height:40px;border-radius:50%;border:1.4px solid var(--copper);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:18px;color:var(--copper);
+  }
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    position:fixed;inset:0;background:#39291f66;backdrop-filter:blur(3px);
+    display:none;align-items:center;justify-content:center;padding:24px;z-index:50;
+  }
+  .overlay.show{display:flex}
+  .modal{
+    background:var(--card);border-radius:20px;padding:26px 22px;width:100%;max-width:360px;
+    text-align:center;box-shadow:0 16px 48px #00000030;
+  }
+  .modal h3{font-family:'Frank Ruhl Libre',serif;font-size:21px;margin-bottom:6px}
+  .modal p{font-size:14px;color:#6b5240;margin-bottom:16px;line-height:1.55}
+  .modal input{
+    width:100%;padding:13px;border-radius:12px;border:1.5px solid var(--copper);
+    background:#fff;font-size:22px;text-align:center;letter-spacing:8px;font-family:'Heebo';
+    color:var(--ink);outline:none;direction:ltr;
+  }
+  .modal input.name{font-size:17px;letter-spacing:normal;direction:rtl}
+  .modal .err{color:var(--danger);font-size:13px;min-height:18px;margin-top:8px}
+  .modal .row{display:flex;gap:10px;margin-top:16px}
+  .modal .row .btn{margin:0}
+  .wallet-steps{text-align:right;font-size:14.5px;line-height:1.8;color:#4b3728}
+  .wallet-steps b{color:var(--ink)}
+  .wallet-steps .os{font-weight:700;color:var(--copper);margin-top:10px;display:block;font-size:15px}
+
+  /* ---------- Setup ---------- */
+  .setup p.intro{font-size:15px;color:#5d4636;line-height:1.6;margin:14px 0 18px}
+  .setup label{display:block;text-align:right;font-size:14px;color:#6b5240;margin:12px 0 6px}
+  .setup input{
+    width:100%;padding:13px;border-radius:12px;border:1.5px solid var(--copper);
+    background:#fff;font-size:16px;font-family:'Heebo';color:var(--ink);outline:none;
+  }
+  .hidden{display:none}
+  footer.credit{margin-top:26px;font-size:11px;color:#a98f7b}
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:400px){
+    .app{padding:20px 14px 32px}
+    .logo .glow,.logo .skin{font-size:34px}
+    .tagline{letter-spacing:3px;font-size:10px}
+    h1.cardtitle{font-size:22px}
+    .punch{font-size:18px}
+    .punch .d{font-size:7.5px}
+    .terms{gap:5px}
+    .term{font-size:10.5px}
+    .btn{font-size:16px;padding:13px}
+  }
+  @media (max-width:340px){
+    .logo .glow,.logo .skin{font-size:28px}
+    .palm{width:50px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Palm -->
+  <svg class="palm" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#3d2c20" stroke-width="2.2" stroke-linecap="round" fill="none">
+      <path d="M52 108 C50 80 49 58 50 42"/>
+      <path d="M50 42 C38 34 24 33 12 40 C26 30 42 31 50 38"/>
+      <path d="M50 42 C62 34 76 33 88 40 C74 30 58 31 50 38"/>
+      <path d="M50 40 C44 28 34 20 20 18 C34 14 46 24 51 34"/>
+      <path d="M50 40 C56 28 66 20 80 18 C66 14 54 24 49 34"/>
+      <path d="M50 38 C48 26 50 16 56 8 C50 18 49 28 51 36"/>
+      <path d="M50 38 C50 26 46 16 40 10 C48 18 51 28 50 36"/>
+    </g>
+    <circle cx="46" cy="44" r="2.6" fill="#3d2c20"/>
+    <circle cx="53" cy="46" r="2.6" fill="#3d2c20"/>
+  </svg>
+
+  <!-- Logo -->
+  <div class="logo"><span class="glow">GLOW</span><span class="skin">skin</span></div>
+  <div class="tagline">Custom Spray Tan Boutique</div>
+  <div class="divider"><span class="spark">✦</span></div>
+  <div class="byline">by Shani</div>
+
+  <!-- ======== SETUP VIEW ======== -->
+  <section id="setupView" class="setup hidden">
+    <h1 class="cardtitle">✦ הפעלת כרטיסייה ✦</h1>
+    <p class="intro">ברוכה הבאה! כדי להפעיל את הכרטיסייה הדיגיטלית שלך, מלאי את הפרטים פעם אחת בלבד. הכרטיסייה נשמרת במכשיר הזה.</p>
+    <label for="clientName">שם הלקוחה</label>
+    <input type="text" id="clientName" class="name" placeholder="לדוגמה: נועה לוי">
+    <label for="clientPhone">מספר טלפון</label>
+    <input type="tel" id="clientPhone" inputmode="tel" placeholder="050-1234567" style="direction:ltr;text-align:right">
+    <label for="clientEmail">כתובת אימייל</label>
+    <input type="email" id="clientEmail" inputmode="email" placeholder="name@example.com" style="direction:ltr;text-align:right">
+    <p style="text-align:right;font-size:13px;color:#8a6b52;margin-top:10px">התוקף: 12 חודשים מיום יצירת הכרטיסייה (היום).</p>
+    <div class="err" id="setupErr" style="color:var(--danger);font-size:13px;min-height:18px;margin-top:8px"></div>
+    <button class="btn btn-primary" onclick="finishSetup()" style="margin-top:10px">הפעלת הכרטיסייה</button>
+  </section>
+
+  <!-- ======== CARD VIEW ======== -->
+  <section id="cardView" class="hidden">
+    <h1 class="cardtitle"><span class="spark">✦</span> כרטיסיית <span class="num">10</span> מפגשים <span class="spark">✦</span></h1>
+    <div class="client-line">הכרטיסייה של <b id="nameLabel"></b></div>
+    <div class="client-line" id="contactLabel" style="font-size:13px;direction:ltr"></div>
+    <div class="validity" id="validityLabel"></div>
+
+    <div id="completeBanner" class="complete-banner hidden">🎉 כל הכבוד! השלמת את כל 10 המפגשים ✨<br>דברי עם שני על כרטיסייה חדשה</div>
+
+    <div class="punch-grid" id="punchGrid"></div>
+    <div class="progress-label" id="progressLabel"></div>
+
+    <button class="btn btn-primary" id="punchBtn" onclick="openPunch()">✦ ניקוב ביקור ✦</button>
+    <button class="btn btn-outline" onclick="openWallet()">📲 הוספה לארנק / מסך הבית</button>
+    <button class="btn-link" onclick="openAdmin()">ניהול (לשני בלבד)</button>
+
+    <div class="terms">
+      <div class="term"><div class="ic">💳</div>יש להציג את הכרטיס בכל ביקור.</div>
+      <div class="term"><div class="ic">📅</div>בתוקף ל־12 חודשים מיום יצירת הכרטיסייה.</div>
+      <div class="term"><div class="ic">👤</div>הכרטיס אישי ואינו ניתן להעברה.</div>
+    </div>
+    <footer class="credit">Glow Skin · Custom Spray Tan Boutique · by Shani</footer>
+  </section>
+
+  <!-- ======== PUNCH MODAL ======== -->
+  <div class="overlay" id="punchModal">
+    <div class="modal">
+      <h3>ניקוב ביקור</h3>
+      <p>הניקוב מתבצע על ידי שני בלבד.<br>הזיני את קוד המנהלת:</p>
+      <input type="password" inputmode="numeric" maxlength="8" id="punchCode" placeholder="••••">
+      <div class="err" id="punchErr"></div>
+      <div class="row">
+        <button class="btn btn-outline" onclick="closeModal('punchModal')">ביטול</button>
+        <button class="btn btn-primary" onclick="confirmPunch()">אישור ניקוב</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== ADMIN MODAL ======== -->
+  <div class="overlay" id="adminModal">
+    <div class="modal">
+      <h3>ניהול הכרטיסייה</h3>
+      <p>פעולות מנהלת — נדרש קוד:</p>
+      <input type="password" inputmode="numeric" maxlength="8" id="adminCode" placeholder="••••">
+      <div class="err" id="adminErr"></div>
+      <div class="row">
+        <button class="btn btn-outline" onclick="adminAction('undo')">ביטול ניקוב אחרון</button>
+        <button class="btn btn-outline" onclick="adminAction('reset')" style="color:var(--danger);border-color:var(--danger)">איפוס כרטיסייה</button>
+      </div>
+      <div class="row"><button class="btn btn-primary" onclick="closeModal('adminModal')">סגירה</button></div>
+    </div>
+  </div>
+
+  <!-- ======== WALLET MODAL ======== -->
+  <div class="overlay" id="walletModal">
+    <div class="modal">
+      <h3>📲 הוספה לארנק הדיגיטלי</h3>
+      <div class="wallet-steps">
+        <span class="os"> iPhone (Safari):</span>
+        1. פתחי את הכרטיס בדפדפן <b>Safari</b><br>
+        2. לחצי על כפתור השיתוף <b>⬆️</b> בתחתית המסך<br>
+        3. בחרי <b>"הוסף למסך הבית"</b><br>
+        4. הכרטיס יופיע כאייקון — בדיוק כמו אפליקציה ✨
+        <span class="os"> Android (Chrome):</span>
+        1. פתחי את הכרטיס בדפדפן <b>Chrome</b><br>
+        2. לחצי על תפריט <b>⋮</b> בפינה העליונה<br>
+        3. בחרי <b>"הוספה למסך הבית"</b>
+      </div>
+      <p style="margin-top:14px;font-size:12.5px">💡 חשוב: הכרטיסייה נשמרת במכשיר שבו הופעלה — יש להשתמש תמיד באותו מכשיר ובאותו דפדפן.</p>
+      <div class="row"><button class="btn btn-primary" onclick="closeModal('walletModal')">הבנתי</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  // ===== Config =====
+  // Admin code stored as a hash so it can't be read in plain text from the file.
+  var CODE_HASH = "3e0f...";
+  var TOTAL = 10;
+  var KEY = "glowskin_card_v1";
+
+  function hash(s){
+    // simple SHA-256 via SubtleCrypto with sync fallback
+    var h = 0, i;
+    for (i = 0; i < s.length; i++){ h = ((h<<5)-h) + s.charCodeAt(i); h |= 0; }
+    return "gs" + (h >>> 0).toString(16);
+  }
+  CODE_HASH = "gs" + (function(){var h=0,s="2112";for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return (h>>>0).toString(16);})();
+
+  // ===== State =====
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; }
+  }
+  function save(st){ localStorage.setItem(KEY, JSON.stringify(st)); }
+  var state = load();
+
+  // ===== Helpers =====
+  function $(id){ return document.getElementById(id); }
+  function fmt(iso){
+    var d = new Date(iso);
+    return d.toLocaleDateString("he-IL",{day:"2-digit",month:"2-digit",year:"numeric"});
+  }
+  function fmtShort(iso){
+    var d = new Date(iso);
+    return d.toLocaleDateString("he-IL",{day:"2-digit",month:"2-digit"});
+  }
+  function expiryOf(st){
+    var d = new Date(st.start);
+    d.setFullYear(d.getFullYear()+1);
+    return d;
+  }
+  function isExpired(st){ return new Date() > expiryOf(st); }
+
+  // ===== Views =====
+  function show(view){
+    $("setupView").classList.toggle("hidden", view!=="setup");
+    $("cardView").classList.toggle("hidden", view!=="card");
+  }
+
+  window.finishSetup = function(){
+    var name = $("clientName").value.trim();
+    var phone = $("clientPhone").value.trim();
+    var email = $("clientEmail").value.trim();
+    if(!name){ $("setupErr").textContent = "נא למלא שם"; return; }
+    if(!/^0\d{1,2}-?\d{7}$/.test(phone.replace(/\s/g,""))){ $("setupErr").textContent = "נא למלא מספר טלפון תקין"; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ $("setupErr").textContent = "נא למלא כתובת אימייל תקינה"; return; }
+    state = { name:name, phone:phone, email:email, start:new Date().toISOString(), punches:[] };
+    save(state);
+    render();
+    show("card");
+  };
+
+  function render(){
+    $("nameLabel").textContent = state.name;
+    $("contactLabel").textContent = (state.phone || "") + (state.phone && state.email ? " · " : "") + (state.email || "");
+    var exp = expiryOf(state);
+    var expired = isExpired(state);
+    var v = $("validityLabel");
+    v.textContent = expired
+      ? "פג תוקף בתאריך " + exp.toLocaleDateString("he-IL")
+      : "בתוקף עד " + exp.toLocaleDateString("he-IL") + " · נוצרה ב־" + fmt(state.start);
+    v.classList.toggle("expired", expired);
+
+    var grid = $("punchGrid");
+    grid.innerHTML = "";
+    for(var i=0;i<TOTAL;i++){
+      var el = document.createElement("div");
+      el.className = "punch" + (i < state.punches.length ? " done" : "");
+      if(i < state.punches.length){
+        el.innerHTML = "✓<span class='d'>" + fmtShort(state.punches[i]) + "</span>";
+      } else {
+        el.textContent = i+1;
+      }
+      grid.appendChild(el);
+    }
+
+    var n = state.punches.length;
+    $("progressLabel").textContent = n < TOTAL
+      ? "נוצלו " + n + " מתוך " + TOTAL + " מפגשים · נותרו " + (TOTAL-n)
+      : "הכרטיסייה נוצלה במלואה";
+    $("completeBanner").classList.toggle("hidden", n < TOTAL);
+    $("punchBtn").disabled = (n >= TOTAL) || expired;
+    if(expired && n < TOTAL) $("punchBtn").textContent = "פג תוקף הכרטיסייה";
+  }
+
+  // ===== Modals =====
+  window.closeModal = function(id){ $(id).classList.remove("show"); };
+  function openModal(id){ $(id).classList.add("show"); }
+
+  window.openPunch = function(){
+    $("punchCode").value = ""; $("punchErr").textContent = "";
+    openModal("punchModal");
+    setTimeout(function(){ $("punchCode").focus(); }, 100);
+  };
