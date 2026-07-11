@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Glow Skin">
 <meta name="theme-color" content="#f2e3dc">
-<!-- תצוגה מקדימה בווטסאפ / רשתות (עובד כשהדף מאוחסן אונליין) -->
+<!-- תצוגה מקדימה בווטסאפ / רשתות -->
 <meta property="og:title" content="Glow Skin ✦ כרטיסיית 10 מפגשים">
 <meta property="og:description" content="הכרטיסייה הדיגיטלית שלך · Custom Spray Tan Boutique · by Shani">
 <meta property="og:type" content="website">
@@ -26,11 +26,8 @@
     --bg:#f2e3dc;
     --ink:#39291f;
     --copper:#b47a52;
-    --copper-light:#c9987412;
-    --copper-soft:#c99874;
     --card:#faf1ec;
     --danger:#a33b2e;
-    --ok:#4a7c46;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   html,body{height:100%}
@@ -121,7 +118,6 @@
     background:#fff;font-size:22px;text-align:center;letter-spacing:8px;font-family:'Heebo';
     color:var(--ink);outline:none;direction:ltr;
   }
-  .modal input.name{font-size:17px;letter-spacing:normal;direction:rtl}
   .modal .err{color:var(--danger);font-size:13px;min-height:18px;margin-top:8px}
   .modal .row{display:flex;gap:10px;margin-top:16px}
   .modal .row .btn{margin:0}
@@ -186,7 +182,7 @@
     <h1 class="cardtitle">✦ הפעלת כרטיסייה ✦</h1>
     <p class="intro">ברוכה הבאה! כדי להפעיל את הכרטיסייה הדיגיטלית שלך, מלאי את הפרטים פעם אחת בלבד. הכרטיסייה נשמרת במכשיר הזה.</p>
     <label for="clientName">שם הלקוחה</label>
-    <input type="text" id="clientName" class="name" placeholder="לדוגמה: נועה לוי">
+    <input type="text" id="clientName" placeholder="לדוגמה: נועה לוי">
     <label for="clientPhone">מספר טלפון</label>
     <input type="tel" id="clientPhone" inputmode="tel" placeholder="050-1234567" style="direction:ltr;text-align:right">
     <label for="clientEmail">כתובת אימייל</label>
@@ -274,24 +270,21 @@
 <script>
 (function(){
   // ===== Config =====
-  // Admin code stored as a hash so it can't be read in plain text from the file.
-  var CODE_HASH = "3e0f...";
   var TOTAL = 10;
   var KEY = "glowskin_card_v1";
 
   function hash(s){
-    // simple SHA-256 via SubtleCrypto with sync fallback
     var h = 0, i;
     for (i = 0; i < s.length; i++){ h = ((h<<5)-h) + s.charCodeAt(i); h |= 0; }
     return "gs" + (h >>> 0).toString(16);
   }
-  CODE_HASH = "gs" + (function(){var h=0,s="2112";for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return (h>>>0).toString(16);})();
+  var CODE_HASH = hash("2112");
 
   // ===== State =====
   function load(){
     try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; }
   }
-  function save(st){ localStorage.setItem(KEY, JSON.stringify(st)); }
+  function save(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
   var state = load();
 
   // ===== Helpers =====
@@ -372,3 +365,71 @@
     openModal("punchModal");
     setTimeout(function(){ $("punchCode").focus(); }, 100);
   };
+  window.openAdmin = function(){
+    $("adminCode").value = ""; $("adminErr").textContent = "";
+    openModal("adminModal");
+  };
+  window.openWallet = function(){ openModal("walletModal"); };
+
+  // brute-force delay
+  var fails = 0, lockUntil = 0;
+  function checkCode(input, errEl){
+    if(Date.now() < lockUntil){
+      errEl.textContent = "יותר מדי ניסיונות — נסי שוב בעוד 30 שניות";
+      return false;
+    }
+    if(hash(input) === CODE_HASH){ fails = 0; return true; }
+    fails++;
+    if(fails >= 5){ lockUntil = Date.now() + 30000; fails = 0; }
+    errEl.textContent = "קוד שגוי";
+    return false;
+  }
+
+  window.confirmPunch = function(){
+    var code = $("punchCode").value.trim();
+    if(!checkCode(code, $("punchErr"))) return;
+    if(state.punches.length >= TOTAL) return;
+    state.punches.push(new Date().toISOString());
+    save(state);
+    closeModal("punchModal");
+    render();
+    var circles = document.querySelectorAll(".punch.done");
+    var last = circles[circles.length-1];
+    if(last) last.classList.add("pop");
+  };
+
+  window.adminAction = function(action){
+    var code = $("adminCode").value.trim();
+    if(!checkCode(code, $("adminErr"))) return;
+    if(action === "undo"){
+      if(state.punches.length === 0){ $("adminErr").textContent = "אין ניקובים לביטול"; return; }
+      state.punches.pop();
+      save(state); render();
+      $("adminErr").textContent = "";
+      closeModal("adminModal");
+    } else if(action === "reset"){
+      if(!confirm("לאפס את הכרטיסייה לגמרי? פעולה זו תמחק את כל הנתונים.")) return;
+      try { localStorage.removeItem(KEY); } catch(e){}
+      state = null;
+      closeModal("adminModal");
+      $("clientName").value = ""; $("clientPhone").value = ""; $("clientEmail").value = "";
+      show("setup");
+    }
+  };
+
+  // Enter key submits punch code
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && $("punchModal").classList.contains("show")) confirmPunch();
+  });
+
+  // ===== Init =====
+  if(state && state.name){
+    render();
+    show("card");
+  } else {
+    show("setup");
+  }
+})();
+</script>
+</body>
+</html>
