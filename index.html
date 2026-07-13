@@ -69,13 +69,16 @@
   /* ---------- Punches ---------- */
   .punch-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,3vw,14px);justify-items:center;margin:8px 0 20px;direction:rtl}
   .punch{
-    width:100%;max-width:58px;aspect-ratio:1;height:auto;border-radius:50%;
-    border:1.6px solid var(--copper);
+    width:100%;max-width:68px;aspect-ratio:1;height:auto;border-radius:50%;
+    border:1.7px solid var(--copper);
     display:flex;align-items:center;justify-content:center;flex-direction:column;
-    font-family:'Frank Ruhl Libre',serif;font-size:22px;color:var(--ink);
+    font-family:'Frank Ruhl Libre',serif;font-size:25px;color:var(--ink);
     background:var(--card);position:relative;transition:transform .25s, background .25s;
   }
-  .punch .d{font-size:8.5px;color:#fff;font-family:'Heebo';line-height:1;margin-top:1px;opacity:.95}
+  .punch .d{font-size:9px;color:#fff;font-family:'Heebo';line-height:1;margin-top:1px;opacity:.95}
+  .punch.gift{border-style:dashed;background:#f7e8de}
+  .punch .free{font-size:9.5px;color:var(--copper);font-family:'Heebo';font-weight:700;line-height:1;margin-top:1px}
+  .free-note{font-size:14px;color:var(--copper);font-weight:600;margin:-8px 0 14px}
   .punch.done{background:var(--copper);border-color:var(--copper);color:#fff}
   .punch.pop{animation:pop .5s ease}
   @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.25)}100%{transform:scale(1)}}
@@ -155,8 +158,9 @@
     .logo-wrap{padding-top:95px}
     .tagline{letter-spacing:3px;font-size:10px}
     h1.cardtitle{font-size:22px}
-    .punch{font-size:18px}
-    .punch .d{font-size:7.5px}
+    .punch{font-size:21px}
+    .punch .d{font-size:8px}
+    .punch .free{font-size:8.5px}
     .terms{gap:5px}
     .term{font-size:10.5px}
     .btn{font-size:16px;padding:13px}
@@ -200,9 +204,10 @@
     <div class="client-line" id="contactLabel" style="font-size:13px;direction:ltr"></div>
     <div class="validity" id="validityLabel"></div>
 
-    <div id="completeBanner" class="complete-banner hidden">🎉 כל הכבוד! השלמת את כל 10 המפגשים ✨<br>דברי עם שני על כרטיסייה חדשה</div>
+    <div id="completeBanner" class="complete-banner hidden">🎉 כל הכבוד! השלמת את כל 10 המפגשים —<br>והמפגש ה־10 היה שיזוף חינם 🎁<br>דברי עם שני על כרטיסייה חדשה ✨</div>
 
     <div class="punch-grid" id="punchGrid"></div>
+    <div class="free-note">🎁 המפגש ה־10 — שיזוף חינם!</div>
     <div class="progress-label" id="progressLabel"></div>
 
     <button class="btn btn-primary" id="punchBtn" onclick="openPunch()">✦ ניקוב ביקור ✦</button>
@@ -341,9 +346,12 @@
     grid.innerHTML = "";
     for(var i=0;i<TOTAL;i++){
       var el = document.createElement("div");
-      el.className = "punch" + (i < state.punches.length ? " done" : "");
+      var isGift = (i === TOTAL-1);
+      el.className = "punch" + (i < state.punches.length ? " done" : "") + (isGift && i >= state.punches.length ? " gift" : "");
       if(i < state.punches.length){
         el.innerHTML = "✓<span class='d'>" + fmtShort(state.punches[i]) + "</span>";
+      } else if(isGift){
+        el.innerHTML = "🎁<span class='free'>חינם</span>";
       } else {
         el.textContent = i+1;
       }
